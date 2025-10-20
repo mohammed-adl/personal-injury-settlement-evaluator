@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { fail } from "../lib/index.js";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env!.OPENAI_API_KEY,
 });
 
 const SYSTEM_PROMPT = `You are a personal injury settlement estimator for a law firm. Based on case details, provide:

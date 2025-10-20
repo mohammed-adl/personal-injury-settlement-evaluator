@@ -2,7 +2,7 @@ import asyncHandler from "express-async-handler";
 import { success, fail, prisma } from "../../lib/index.js";
 import { aiService } from "../../services/index.js";
 
-export const getinjurySubmissions = asyncHandler(async (req, res) => {
+export const getInjurySubmissions = asyncHandler(async (req, res) => {
   const { data } = req.body;
 
   if (!data || !Array.isArray(data.fields)) {
