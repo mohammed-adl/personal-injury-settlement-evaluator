@@ -5,15 +5,15 @@
   "main": "server.js",
   "scripts": {
     "dev": "tsx watch server.ts",
-    "build": "tsx build server.ts",
+    "build": "tsc",
     "start": "node dist/server.js"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@prisma/client": "^6.17.1",
     "@supabase/supabase-js": "^2.75.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
