@@ -7,3 +7,26 @@ datasource db {
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+
+model Submission {
+  id               String   @id @default(uuid())
+  fullName         String
+  email            String
+  phone            String?
+  accident         String
+  treatmentLevel   String
+  weeksOfTreatment Int
+  medicalBills     Float
+  lostWages        Float
+  sharedFault      Int
+  medicalBillsFile String
+  otherDocuments   String?
+  estimateLow      Float?
+  estimateHigh     Float?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([email])
+  @@index([createdAt])
+  @@map("submissions")
+}
