@@ -3,10 +3,13 @@ const router = express.Router();
 
 import * as submissionsController from "../../controllers/submissions/index.js";
 
-router.get(
+router.get("/injury", (req, res) => res.send("OK"));
+
+router.post(
   "/injury",
   submissionsController.getInjurySubmissions
 );
+
 
 
 export default router;

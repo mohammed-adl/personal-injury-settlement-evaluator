@@ -29,9 +29,19 @@ export const getInjurySubmissions = asyncHandler(async (req, res) => {
     otherDocuments: fields["Upload other documents"]?.[0]?.url || null,
   };
 
-  if (!formData.fullName || !formData.email || formData.accident || formData.treatmentLevel || formData.weeksOfTreatment || formData.medicalBills || formData.lostWages || formData.sharedFault || formData.medicalBillsFile ) {
-    return fail("Missing required fields", 400);
-  } // Zod validation is better than this
+ if (
+  !formData.fullName ||
+  !formData.email ||
+  !formData.accident ||
+  !formData.treatmentLevel ||
+  !formData.weeksOfTreatment ||
+  !formData.medicalBills ||
+  !formData.lostWages ||
+  !formData.sharedFault ||
+  !formData.medicalBillsFile
+) {
+  return fail("Missing required fields", 400);
+}
 
   const aiResponse = await aiService.generateSettlementEstimate(formData);
 
@@ -42,6 +52,7 @@ export const getInjurySubmissions = asyncHandler(async (req, res) => {
       estimateHigh: aiResponse.estimateHigh,
     },
   });
+
 
   return success(res, { submission, aiResponse });
 });
