@@ -1,10 +1,13 @@
 import express from 'express';
 const app = express();
 
+import { registerMiddlewares } from "./src/middlewares/global.middleware.js";
+
+
 app.get("/", (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(3001, () => console.log('Running on 3001'));
+registerMiddlewares(app);
 
 export default app;

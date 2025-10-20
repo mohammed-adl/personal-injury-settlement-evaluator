@@ -1,0 +1,1 @@
+export const RATE_LIMIT : number = 10; // Number of requests allowed per minute
