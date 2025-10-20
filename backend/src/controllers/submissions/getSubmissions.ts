@@ -1,30 +1,46 @@
 import asyncHandler from "express-async-handler";
-
 import { success, fail, prisma } from "../../lib/index.js";
 import { aiService } from "../../services/index.js";
 
 export const getinjurySubmissions = asyncHandler(async (req, res) => {
-  const { formData } = req.body;
-  if (!formData) return fail( "Form data is required", 400);
+  const { data } = req.body;
+
+  if (!data || !Array.isArray(data.fields)) {
+    return fail("Invalid webhook payload", 400);
+  }
+
+  const fields = Object.fromEntries(
+    data.fields.map(f => [f.label.trim(), f.value])
+  );
+
+  const formData = {
+    fullName: fields["Full name"] || null,
+    email: fields["Email"] || null,
+    phone: fields["Phone"] || null,
+    accident: fields["What happened (short description)"] || null,
+    treatmentLevel: Array.isArray(fields["Treatment level"])
+      ? fields["Treatment level"][0]
+      : fields["Treatment level"] || null,
+    weeksOfTreatment: fields["Weeks of treatment"] || null,
+    medicalBills: fields["Medical bills total (USD)"] || null,
+    lostWages: fields["Lost wages total (USD)"] || null,
+    sharedFault: fields["Shared fault % (0–100)"] || null,
+    medicalBillsFile: fields["Upload medical bills"]?.[0]?.url || null,
+    otherDocuments: fields["Upload other documents"]?.[0]?.url || null,
+  };
+
+  if (!formData.fullName || !formData.email || formData.accident || formData.treatmentLevel || formData.weeksOfTreatment || formData.medicalBills || formData.lostWages || formData.sharedFault || formData.medicalBillsFile ) {
+    return fail("Missing required fields", 400);
+  } // Zod validation is better than this
 
   const aiResponse = await aiService.generateSettlementEstimate(formData);
 
   const submission = await prisma.submission.create({
     data: {
-      fullName: formData.fullName,
-      email: formData.email,
-      phone: formData.phone,
-      accident: formData.accident,
-      treatmentLevel: formData.treatmentLevel,
-      weeksOfTreatment: formData.weeksOfTreatment,
-      medicalBills: formData.medicalBills,
-      lostWages: formData.lostWages,
-      sharedFault: formData.sharedFault,
-      medicalBillsFile: formData.medicalBillsFile,
-      otherDocuments: formData.otherDocuments,
+      ...formData,
       estimateLow: aiResponse.estimateLow,
-      estimateHigh: aiResponse.estimateHigh
-    }
+      estimateHigh: aiResponse.estimateHigh,
+    },
   });
 
   return success(res, { submission, aiResponse });
