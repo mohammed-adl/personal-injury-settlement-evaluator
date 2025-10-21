@@ -14,7 +14,7 @@
 > It automatically analyzes Tally form submissions, generates AI-based settlement estimates, creates PDF reports, and emails results directly to clients — all with a live lawyer dashboard.
 
 <p align="center">
-  <img src="/frontend/public/demo.gif" alt="System Demo" width="850"/>
+  <img src="/frontend/public/main.PNG" alt="System Demo" width="850"/>
 </p>
 
 **Live Demo:** [https://injury-ai.vercel.app](https://injury-ai.vercel.app)
