@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import { success, fail, prisma } from "../../lib/index.js";
+import { success, fail, prisma, generateSettlementPDF } from "../../lib/index.js";
 import { aiService } from "../../services/index.js";
 
 export const getInjurySubmissions = asyncHandler(async (req, res) => {
@@ -52,6 +52,10 @@ export const getInjurySubmissions = asyncHandler(async (req, res) => {
       estimateHigh: aiResponse.estimateHigh,
     },
   });
+
+  const pdf = await generateSettlementPDF(formData, aiResponse);
+
+  console.log(pdf);
 
 
   return success(res, { submission, aiResponse });
