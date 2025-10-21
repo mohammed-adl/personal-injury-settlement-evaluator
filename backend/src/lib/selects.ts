@@ -1,0 +1,17 @@
+export const submissionsSelect = {
+  id: true,
+  fullName: true,
+  email: true,
+  phone: true,
+  accident: true,
+  treatmentLevel: true,
+  weeksOfTreatment: true,
+  medicalBills: true,
+  lostWages: true,
+  sharedFault: true,
+  medicalBillsFile: true,
+  otherDocuments: true,
+  estimateLow: true,  
+  estimateHigh: true,
+  createdAt: true,
+}
