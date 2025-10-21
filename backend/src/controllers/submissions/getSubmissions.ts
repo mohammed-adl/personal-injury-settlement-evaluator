@@ -1,20 +1,12 @@
 import asyncHandler from "express-async-handler";
-import { success, fail, prisma, submissionsSelect } from "../../lib/index.js";
-import { Prisma } from "@prisma/client";
+import { success, prisma, submissionsSelect } from "../../lib/index.js";
 
 export const getAllSubmissions = asyncHandler(async (req, res) => {
-  const { page = "1", limit = "10", search = "" } = req.query as {
-    page?: string;
-    limit?: string;
-    search?: string;
-  };
+  const { page, limit, search } = req.validatedQuery!;
 
-  const pageNum = parseInt(page, 10);
-  const limitNum = parseInt(limit, 10);
-  const skip = (pageNum - 1) * limitNum;
+  const skip = (page - 1) * limit;
 
-  let where: Prisma.SubmissionWhereInput = {};
-
+  let where: any = {};
   if (search !== "") {
     where = {
       OR: [
@@ -28,7 +20,7 @@ export const getAllSubmissions = asyncHandler(async (req, res) => {
     prisma.submission.findMany({
       where,
       skip,
-      take: limitNum,
+      take: limit,
       orderBy: { createdAt: "desc" },
       select: submissionsSelect,
     }),
@@ -39,9 +31,9 @@ export const getAllSubmissions = asyncHandler(async (req, res) => {
     submissions,
     pagination: {
       total,
-      page: pageNum,
-      limit: limitNum,
-      totalPages: Math.ceil(total / limitNum),
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
       hasMore: skip + submissions.length < total,
     },
   });

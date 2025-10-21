@@ -27,7 +27,8 @@
     "openai": "^6.5.0",
     "pdf-lib": "^1.17.1",
     "prisma": "^6.17.1",
-    "resend": "^6.2.0"
+    "resend": "^6.2.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
