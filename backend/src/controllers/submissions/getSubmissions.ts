@@ -55,8 +55,5 @@ export const getInjurySubmissions = asyncHandler(async (req, res) => {
 
   const pdf = await generateSettlementPDF(formData, aiResponse);
 
-  console.log(pdf);
-
-
   return success(res, { submission, aiResponse });
 });
