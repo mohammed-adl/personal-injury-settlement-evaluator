@@ -43,18 +43,19 @@ export const handleInjurySubmissions = asyncHandler(async (req, res) => {
     return fail("Missing required fields", 400);
   }
 
-  // Upload files to Supabase
   const medicalBillsUrl = await uploadFile(
-  formData.medicalBillsFile,
-  `medical-bills/${Date.now()}_${formData.fullName}`
+    formData.medicalBillsFile,
+    `medical-bills/${Date.now()}_${formData.fullName}`
   );
 
   let otherDocumentsUrl: string | null = null;
   if (formData.otherDocuments) {
     otherDocumentsUrl = await uploadFile(
-    formData.otherDocuments,
-    `other-documents/${Date.now()}_${formData.fullName}`
-  );
+      formData.otherDocuments,
+      `other-documents/${Date.now()}_${formData.fullName}`
+    );
+  }
+
 
   const aiResponse = await aiService.generateSettlementEstimate(formData);
 
@@ -73,4 +74,4 @@ export const handleInjurySubmissions = asyncHandler(async (req, res) => {
   await emailService.sendSettlementEmail(formData, aiResponse, pdf);
 
   return success(res, { submission, aiResponse });
-  }});
+}); 
