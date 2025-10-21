@@ -36,13 +36,11 @@ export default function Dashboard() {
         <p className="mb-4 text-lg font-medium">Failed to load submissions.</p>
         <button
           onClick={() => refetch()}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
         >
           Retry
         </button>
-        <p className="text-sm text-slate-400 mt-2">
-          {error?.message || "Something went wrong."}
-        </p>
+        <p className="text-sm text-slate-400 mt-2"></p>
       </div>
     );
   }

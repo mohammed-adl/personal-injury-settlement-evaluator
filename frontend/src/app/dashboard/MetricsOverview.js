@@ -1,4 +1,3 @@
-// components/dashboard/MetricsOverview.tsx
 import { FileText, DollarSign, Calendar, TrendingUp } from "lucide-react";
 
 export default function MetricsOverview({

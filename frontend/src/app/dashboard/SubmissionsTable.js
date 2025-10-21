@@ -101,7 +101,6 @@ export default function SubmissionsTable({
         </table>
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="px-6 py-4 border-t border-slate-200 flex items-center justify-between">
           <div className="text-sm text-slate-600">
@@ -113,7 +112,7 @@ export default function SubmissionsTable({
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="p-2 rounded-lg border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="p-2 rounded-lg border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -127,7 +126,7 @@ export default function SubmissionsTable({
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`px-4 py-2 rounded-lg border transition-colors ${
+                  className={`px-4 py-2 rounded-lg border transition-colors cursor-pointer ${
                     currentPage === page
                       ? "bg-slate-900 text-white border-slate-900"
                       : "border-slate-300 hover:bg-slate-50"
@@ -141,7 +140,7 @@ export default function SubmissionsTable({
             <button
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="p-2 rounded-lg border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="p-2 rounded-lg border border-slate-300 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </button>

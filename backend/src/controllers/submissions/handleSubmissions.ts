@@ -33,7 +33,7 @@ const formData = req.validatedBody;
 
   const pdf = await generateSettlementPDF(formData, aiResponse);
 
-  // await emailService.sendSettlementEmail(formData, aiResponse, pdf);
+  await emailService.sendSettlementEmail(formData, aiResponse, pdf);
 
   return success(res, { submission, aiResponse });
 });
