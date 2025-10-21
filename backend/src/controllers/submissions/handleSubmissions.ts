@@ -5,6 +5,7 @@ import { aiService, emailService } from "../../services/index.js";
 export const handleInjurySubmissions = asyncHandler(async (req, res) => {
 const formData = req.validatedBody;
 
+
   const medicalBillsUrl = await uploadFile(
     formData.medicalBillsFile,
     `medical-bills/${Date.now()}_${formData.fullName}`
@@ -32,7 +33,7 @@ const formData = req.validatedBody;
 
   const pdf = await generateSettlementPDF(formData, aiResponse);
 
-  await emailService.sendSettlementEmail(formData, aiResponse, pdf);
+  // await emailService.sendSettlementEmail(formData, aiResponse, pdf);
 
   return success(res, { submission, aiResponse });
 });
