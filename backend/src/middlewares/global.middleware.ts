@@ -23,7 +23,7 @@ export const registerMiddlewares = (app: express.Express) => {
 
   app.use(helmet());
 
-  const allowedOrigins = [`${process.env.ORIGIN}`, "http://localhost:3000"];
+  const allowedOrigins = [`${process.env.ORIGIN}`, "http://localhost:3000", "https://tally.so"];
   app.use(
     cors({
       origin: (origin, callback) => {
