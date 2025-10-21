@@ -1,1 +1,1 @@
-export * from "./getSubmissions.js";
+export * from "./handleSubmissions.js";

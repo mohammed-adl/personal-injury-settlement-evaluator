@@ -2,7 +2,7 @@ import asyncHandler from "express-async-handler";
 import { success, fail, prisma, generateSettlementPDF } from "../../lib/index.js";
 import { aiService, emailService } from "../../services/index.js";
 
-export const getInjurySubmissions = asyncHandler(async (req, res) => {
+export const handleInjurySubmissions = asyncHandler(async (req, res) => {
   const { data } = req.body;
 
   if (!data || !Array.isArray(data.fields)) {

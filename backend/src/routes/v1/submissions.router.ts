@@ -7,7 +7,7 @@ router.get("/injury", (req, res) => res.send("OK"));
 
 router.post(
   "/injury",
-  submissionsController.getInjurySubmissions
+  submissionsController.handleInjurySubmissions
 );
 
 
