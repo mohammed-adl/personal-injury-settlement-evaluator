@@ -13,7 +13,8 @@ export const validate =
     try {
       if (schemas.body) req.validatedBody = schemas.body.parse(req.body);
       if (schemas.query) req.validatedQuery = schemas.query.parse(req.query);
-      if (schemas.params) req.validatedParams = schemas.params.parse(req.params);
+      if (schemas.params)
+        req.validatedParams = schemas.params.parse(req.params);
 
       next();
     } catch (err: any) {

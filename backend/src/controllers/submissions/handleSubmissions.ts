@@ -1,10 +1,15 @@
 import asyncHandler from "express-async-handler";
-import { success, prisma, generateSettlementPDF, uploadFile, fail } from "../../lib/index.js";
+import {
+  success,
+  prisma,
+  generateSettlementPDF,
+  uploadFile,
+  fail,
+} from "../../lib/index.js";
 import { aiService, emailService } from "../../services/index.js";
 
 export const handleInjurySubmissions = asyncHandler(async (req, res) => {
-const formData = req.validatedBody;
-
+  const formData = req.validatedBody;
 
   const medicalBillsUrl = await uploadFile(
     formData.medicalBillsFile,

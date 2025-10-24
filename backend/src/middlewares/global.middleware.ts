@@ -17,13 +17,16 @@ const generalLimiter = rateLimit({
   },
 });
 
-
 export const registerMiddlewares = (app: express.Express) => {
   app.set("trust proxy", 1);
 
   app.use(helmet());
 
-  const allowedOrigins = [`${process.env.ORIGIN}`, "http://localhost:3000", "https://tally.so"];
+  const allowedOrigins = [
+    `${process.env.ORIGIN}`,
+    "http://localhost:3000",
+    "https://tally.so",
+  ];
   app.use(
     cors({
       origin: (origin, callback) => {

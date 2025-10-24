@@ -19,7 +19,3 @@ declare module "socket.io" {
     userId?: string;
   }
 }
-
-export type ValidatedRequestBody<T extends z.ZodTypeAny> = z.infer<T>;
-export type ValidatedRequestQuery<T extends z.ZodTypeAny> = z.infer<T>;
-export type ValidatedRequestParams<T extends z.ZodTypeAny> = z.infer<T>;

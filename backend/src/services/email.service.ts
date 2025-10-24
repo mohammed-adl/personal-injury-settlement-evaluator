@@ -4,7 +4,11 @@ import type { FormData, AIResponse } from "../types/submission.types.js";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const emailService = {
-  async sendSettlementEmail(formData: FormData, aiResponse: AIResponse, pdfBuffer: Buffer) {
+  async sendSettlementEmail(
+    formData: FormData,
+    aiResponse: AIResponse,
+    pdfBuffer: Buffer
+  ) {
     const { fullName, email } = formData;
     const { estimateLow, estimateHigh, rationale, similarCases } = aiResponse;
 
@@ -12,7 +16,9 @@ const emailService = {
       .map(
         (c) => `
         <li>
-          <strong>${c.title}</strong> — settled for $${c.outcome.toLocaleString()}<br>
+          <strong>${
+            c.title
+          }</strong> — settled for $${c.outcome.toLocaleString()}<br>
           <span style="color: #666;">${c.summary}</span>
         </li>
       `

@@ -11,7 +11,7 @@ export const submissionsSelect = {
   sharedFault: true,
   medicalBillsFile: true,
   otherDocuments: true,
-  estimateLow: true,  
+  estimateLow: true,
   estimateHigh: true,
   createdAt: true,
-}
+};

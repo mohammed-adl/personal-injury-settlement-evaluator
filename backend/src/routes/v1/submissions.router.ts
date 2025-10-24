@@ -1,7 +1,10 @@
 import express from "express";
 const router = express.Router();
 
-import { getAllSubmissionsSchema, injuryFormDataSchema } from "../../schemas/index.js";
+import {
+  getAllSubmissionsSchema,
+  injuryFormDataSchema,
+} from "../../schemas/index.js";
 import { validate } from "../../middlewares/index.js";
 import * as submissionsController from "../../controllers/submissions/index.js";
 
